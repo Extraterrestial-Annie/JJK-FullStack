@@ -34,11 +34,13 @@ const Content = (props) => {
     </div>
   )
 }
+
 const Part = (props) => {
   return(
     <p>{props.part} {props.exercises} </p>
   )
 }
+
 const Total = (props) => {
   return(
     <p>Number of exercises {props.total}</p>
