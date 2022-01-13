@@ -18,35 +18,29 @@ const App = () => {
     'Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.',
     'Programming without an extremely heavy use of console.log is same as if a doctor would refuse to use x-rays or blood tests when diagnosing patients'
   ]
-  const votes = [0, 0, 0, 0, 0, 0, 0]
-  const [copy] = useState([...votes])
+  const [votes, setVotes] = useState([0, 0, 0, 0, 0, 0, 0])
   const [selected, setSelected] = useState(0)
-  const [ counter, setCounter ] = useState(0)
-  const max = copy.indexOf(Math.max(...copy))
-  console.log(max)
+  const max = votes.indexOf(Math.max(...votes))
 
   const handleVoteClick = () => {
-    copy.splice(selected, 1, copy[selected] + 1)
-    setTimeout(
-      () => setCounter(counter + 1),
-      100
-    )
+    const copy = [...votes]
+    copy.splice(selected, 1, votes[selected] + 1)
+    setVotes(copy)
   }
   const handleAnecdoteClick = () => {
     setSelected(Math.floor(Math.random() * 7))
   }
-  console.log([copy])
 
   return (
     <div>
       <h1>Anecdote of the day</h1>
       {anecdotes[selected]}<br></br>
-      has {copy[selected]} votes <br></br>
+      has {votes[selected]} votes <br></br>
       <Button handleClick = {handleVoteClick} txt="vote" />
       <Button handleClick = {handleAnecdoteClick} txt="next anecdote" />
       <h1>Anecdote with most votes</h1>
       {anecdotes[max]}<br></br>
-      has {copy[max]} votes <br></br>
+      has {votes[max]} votes <br></br>
     </div>
   )
 }
